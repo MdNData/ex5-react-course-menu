@@ -1,20 +1,30 @@
-export const ItemsContainer = () => {
+import { Item } from "./Item/Item";
+
+export const ItemsContainer = ({ selectedMenu, data }) => {
   return (
-    <div className="section-center">
-      <article className="menu-item">
-        <img
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.stack.imgur.com%2F7YKUD.jpg&f=1&nofb=1&ipt=ce8bf8403e14a9b5a250d8b03f1e73e40e071d040adef75cc173f2b863356f47&ipo=images"
-          alt=""
-          className="img"
-        />
-        <div className="item-info">
-          <header>
-            <h5>Cose</h5>
-            <p className="item-price">500</p>
-          </header>
-          <p className="item-text">Cosette</p>
-        </div>
-      </article>
-    </div>
+    <section className="section-center">
+      {data.map((item, key) => {
+        const { id, title, category, price, img, desc } = item;
+        return selectedMenu === "All" ? (
+          <Item
+            key={key}
+            id={id}
+            title={title}
+            price={price}
+            img={img}
+            desc={desc}
+          />
+        ) : category == selectedMenu ? (
+          <Item
+            key={key}
+            id={id}
+            title={title}
+            price={price}
+            img={img}
+            desc={desc}
+          />
+        ) : undefined;
+      })}
+    </section>
   );
 };

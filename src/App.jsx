@@ -7,7 +7,9 @@ import { ItemsContainer } from "./assets/components/ItemsContainer/ItemsContaine
 
 const App = () => {
   const [data, setData] = useState(menus);
+  //all the categories for the menu
   const [menu, setMenu] = useState(null);
+  //current menu selected
   const [selectedMenu, setSelectedMenu] = useState("All");
 
   const searchUniques = () => {
@@ -28,14 +30,11 @@ const App = () => {
   useEffect(() => {
     searchUniques();
   }, []);
-
   return (
-    <main>
-      <section className="menu">
-        <Header />
-        <Menu menu={menu} setMenu={setMenu} setSelectedMenu={setSelectedMenu} />
-        <ItemsContainer />
-      </section>
+    <main className="menu">
+      <Header />
+      <Menu menu={menu} setMenu={setMenu} setSelectedMenu={setSelectedMenu} />
+      <ItemsContainer selectedMenu={selectedMenu} data={data} />
     </main>
   );
 };
